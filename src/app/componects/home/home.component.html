@@ -1,0 +1,25 @@
+ <h2>{{ pageTitle }}</h2>
+
+<h3>Test</h3>
+
+
+<div>
+    <table class='table'>  
+        <thead>  
+            <tr>  
+                <th>Name</th>  
+                <th>Contact</th>  
+                <th>Message</th>  
+                <th>Guest</th>  
+            </tr>  
+        </thead>  
+        <tbody>  
+            <tr *ngFor="let rsvp of rsvps;">  
+                <td>{{rsvp.name}}</td>  
+                <td>{{rsvp.contact}}</td>  
+                <td>{{rsvp.message}}</td>  
+                <td>{{rsvp.numberOfGuest}}</td>  
+            </tr>  
+        </tbody>  
+    </table>  
+</div>
