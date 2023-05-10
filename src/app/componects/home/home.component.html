@@ -1,25 +1,48 @@
- <h2>{{ pageTitle }}</h2>
 
-<h3>Test</h3>
+<div class="containe-xs">
+    <div class="row">
+        
+      <div class="col-xs">
+       
+        <div class="sidebar">
+            0
+        </div>
+      </div>
+      <div class="col">
+      
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-primary justify-content-end ">
+                <ul class="nav justify-content-end">
+                  <li class="nav-item">
+                    <a class="nav-link  bg-light " aria-current="page" routerLink="/home">Active</a>
+                  </li>
+                </ul>
+                </nav>
+        </div>
 
+        <div class="data-table">
+            <table class="table table-dark table-sm">  
+                <thead>  
+                    <tr>  
+                        <th>Name</th>  
+                        <th>Contact</th>  
+                        <th>Message</th>  
+                        <th>Guest</th>  
+                    </tr>  
+                </thead>  
+                <tbody *ngIf="loadData">  
+                    <tr *ngFor="let rsvp of rsvps;">  
+                        <td>{{rsvp.name}}</td>  
+                        <td>{{rsvp.contact}}</td>  
+                        <td>{{rsvp.message}}</td>  
+                        <td>{{rsvp.numberOfGuest}}</td>  
+                    </tr>  
+                </tbody>  
+            </table>
 
-<div>
-    <table class='table'>  
-        <thead>  
-            <tr>  
-                <th>Name</th>  
-                <th>Contact</th>  
-                <th>Message</th>  
-                <th>Guest</th>  
-            </tr>  
-        </thead>  
-        <tbody>  
-            <tr *ngFor="let rsvp of rsvps;">  
-                <td>{{rsvp.name}}</td>  
-                <td>{{rsvp.contact}}</td>  
-                <td>{{rsvp.message}}</td>  
-                <td>{{rsvp.numberOfGuest}}</td>  
-            </tr>  
-        </tbody>  
-    </table>  
-</div>
+        </div>
+       
+      </div>
+    </div>
+    
+  </div>

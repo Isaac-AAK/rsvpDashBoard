@@ -11,7 +11,7 @@ import { Rsvp } from '../model/rsvp';
 export class RsvpServicesService {
   rsvp:Rsvp[];
   data:Observable<any>;
- rsvpUrl: string ='http://127.0.0.1:8080/api/v1/rsvps';
+ rsvpUrl: string ='http://192.168.1.55:8000/api/v1/rsvps';
 
   constructor(private http: HttpClient) { 
     this.rsvp =[{
@@ -39,7 +39,7 @@ export class RsvpServicesService {
   getRsvp(): Observable<Rsvp[]> {
     return of(this.rsvp);
   }
-  getPosts() : Observable<Rsvp[]> {
+  getPosts():Observable<Rsvp[]>{
     return this.http.get<Rsvp[]>(this.rsvpUrl);
   }
 
@@ -63,5 +63,7 @@ export class RsvpServicesService {
     });
     return this.data;
   }
+
+  
  
 }

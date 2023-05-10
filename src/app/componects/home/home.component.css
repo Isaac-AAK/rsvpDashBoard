@@ -1,0 +1,38 @@
+.dash{
+    padding: 16px;
+}
+.dashboard-space{  
+    padding: 16px;
+}
+
+.card-size{
+   width: 200px;
+    height: auto;
+    text-align: center;
+    text-decoration: dashed;
+}
+h2{
+    padding: 16px;
+}
+.table-size{
+    width: 1120px;
+}
+
+.sidebar{
+    width: 200px;
+    height: 800px;
+    border: 4em;
+    background-color: rgb(73, 73, 245);
+    
+    
+}
+.container{
+    
+}
+.data-table{
+    margin-top: 40px;
+    padding: 16px;
+}
+.col-xs > *{
+    padding: 0px !important;
+}
