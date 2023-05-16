@@ -1,48 +1,117 @@
 
-<div class="containe-xs">
-    <div class="row">
-        
-      <div class="col-xs">
-       
-        <div class="sidebar">
-            0
-        </div>
-      </div>
-      <div class="col">
-      
-        <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-primary justify-content-end ">
-                <ul class="nav justify-content-end">
-                  <li class="nav-item">
-                    <a class="nav-link  bg-light " aria-current="page" routerLink="/home">Active</a>
-                  </li>
-                </ul>
-                </nav>
-        </div>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      DashBoard
+    </button>
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
 
-        <div class="data-table">
-            <table class="table table-dark table-sm">  
-                <thead>  
-                    <tr>  
-                        <th>Name</th>  
-                        <th>Contact</th>  
-                        <th>Message</th>  
-                        <th>Guest</th>  
-                    </tr>  
-                </thead>  
-                <tbody *ngIf="loadData">  
-                    <tr *ngFor="let rsvp of rsvps;">  
-                        <td>{{rsvp.name}}</td>  
-                        <td>{{rsvp.contact}}</td>  
-                        <td>{{rsvp.message}}</td>  
-                        <td>{{rsvp.numberOfGuest}}</td>  
-                    </tr>  
-                </tbody>  
-            </table>
+  </mat-drawer>
 
-        </div>
-       
-      </div>
-    </div>
-    
+  <div class="example-sidenav-content">
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-primary justify-content-start ">
+          <ul class="nav justify-content-start">
+            <li>
+              
+                <button type="button" mat-button (click)="drawer.toggle()">
+                  DashBoard
+                </button>
+            </li>
+            <li>
+              <mat-form-field>
+                
+                <input matInput (keyup)="applyFilter($event)" placeholder="search" #input>
+              </mat-form-field>
+            </li>
+          </ul>
+          </nav>
   </div>
+
+
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <!-- <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container> -->
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="contact">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+      <td mat-cell *matCellDef="let row"> {{row.contact}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <!-- Fruit Column -->
+    <ng-container matColumnDef="numberOfGuest">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Guest </th>
+      <td mat-cell *matCellDef="let row"> {{row.numberOfGuest}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!-- <div class="data-table">
+      <table class="table table-dark table-sm">  
+          <thead>  
+              <tr>  
+                  <th>Name</th>  
+                  <th>Contact</th>  
+                  <th>Message</th>  
+                  <th>Guest</th>  
+              </tr>  
+          </thead>  
+          <tbody *ngIf="loadData">  
+              <tr *ngFor="let rsvp of rsvps;">  
+                  <td>{{rsvp.name}}</td>  
+                  <td>{{rsvp.contact}}</td>  
+                  <td>{{rsvp.message}}</td>  
+                  <td>{{rsvp.numberOfGuest}}</td>  
+              </tr>  
+          </tbody>  
+      </table>
+
+  </div> -->
+  </div>
+
+</mat-drawer-container>
+
+
+      
+        
+
+        

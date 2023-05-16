@@ -9,34 +9,17 @@ import { Rsvp } from '../model/rsvp';
   providedIn:"root"
 })
 export class RsvpServicesService {
-  rsvp:Rsvp[];
+  rsvp:Rsvp;
   data:Observable<any>;
  rsvpUrl: string ='http://192.168.1.55:8000/api/v1/rsvps';
 
   constructor(private http: HttpClient) { 
-    this.rsvp =[{
-      name:'Isaac',
-      contact:'test@mail.com',
-      message:'Love',
-      numberOfGuest: 2
-    },
-    {
-      name:'Nana',
-      contact:'test@mail.com',
-      message:'Love',
-      numberOfGuest: 2
-    },
-    {
-      name:'Akwasi',
-      contact:'test@mail.com',
-      message:'Love',
-      numberOfGuest: 2
-    }]
+   
   }
 
 
   
-  getRsvp(): Observable<Rsvp[]> {
+  getRsvp(): Observable<Rsvp> {
     return of(this.rsvp);
   }
   getPosts():Observable<Rsvp[]>{
