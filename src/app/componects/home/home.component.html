@@ -1,15 +1,7 @@
 
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      DashBoard
-    </button>
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
-
+    <p>Test</p>
   </mat-drawer>
 
   <div class="example-sidenav-content">
@@ -71,7 +63,7 @@
     </tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[25, 100]" aria-label="Select page of users"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[15,50, 100]" aria-label="Select page of users"></mat-paginator>
 </div>
 
 
