@@ -17,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Entity
 @Table(name = "rsvp")
-public class RsvpEntity {
+public class Rsvp {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,6 +32,47 @@ public class RsvpEntity {
 	@Size(min = 0, max = 200, message 
 		      = "Message must be not above 200 characters")
 	private String message;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getContact() {
+		return contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
+	public int getNumberOfGuest() {
+		return numberOfGuest;
+	}
+
+	public void setNumberOfGuest(int numberOfGuest) {
+		this.numberOfGuest = numberOfGuest;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
 	
 
 }

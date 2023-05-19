@@ -11,7 +11,7 @@ import { Rsvp } from '../model/rsvp';
 export class RsvpServicesService {
   rsvp:Rsvp;
   data:Observable<any>;
- rsvpUrl: string ='http://192.168.1.55:8000/api/v1/rsvps';
+ rsvpUrl: string ='http://localhost:8000/api/v1/rsvps';
 
   constructor(private http: HttpClient) { 
    
