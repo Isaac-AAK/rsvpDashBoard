@@ -1,7 +1,8 @@
 
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Test</p>
+<mat-drawer-container class="main-container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <p ng-show="testShow">Test</p>
+    <app-rsvp-form [currentRsvp]="currentRsvp" [isEdit]="isEdit" ></app-rsvp-form>
   </mat-drawer>
 
   <div class="example-sidenav-content">
@@ -11,7 +12,7 @@
             <li>
               
                 <button type="button" mat-button (click)="drawer.toggle()">
-                  DashBoard
+                 Add Rsvp
                 </button>
             </li>
             <li>
@@ -28,13 +29,15 @@
 
 
 <div class="mat-elevation-z8">
+ <!-- Button trigger modal -->
+
   <table mat-table [dataSource]="dataSource" matSort>
 
     <!-- ID Column -->
-    <!-- <ng-container matColumnDef="id">
+    <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
       <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-    </ng-container> -->
+    </ng-container>
 
     <!-- Progress Column -->
     <ng-container matColumnDef="contact">
@@ -45,13 +48,24 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.name}}  </td>
+     
     </ng-container>
 
     <!-- Fruit Column -->
     <ng-container matColumnDef="numberOfGuest">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Guest </th>
-      <td mat-cell *matCellDef="let row"> {{row.numberOfGuest}} </td>
+      <td mat-cell *matCellDef="let row">  <div class="controller">
+      <div>{{row.numberOfGuest}}</div>  
+      <div class="icons"> <mat-icon (click)="deleteRsvp(row)" aria-hidden="false"  fontIcon="delete">
+        
+      </mat-icon>
+        <mat-icon  fontIcon="edit" data-toggle="modal" (click)="update(row)" data-target="#update" ></mat-icon>
+      </div>  
+    </div>
+   
+
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -65,40 +79,32 @@
 
   <mat-paginator [pageSizeOptions]="[15,50, 100]" aria-label="Select page of users"></mat-paginator>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-    
-    <!-- <div class="data-table">
-      <table class="table table-dark table-sm">  
-          <thead>  
-              <tr>  
-                  <th>Name</th>  
-                  <th>Contact</th>  
-                  <th>Message</th>  
-                  <th>Guest</th>  
-              </tr>  
-          </thead>  
-          <tbody *ngIf="loadData">  
-              <tr *ngFor="let rsvp of rsvps;">  
-                  <td>{{rsvp.name}}</td>  
-                  <td>{{rsvp.contact}}</td>  
-                  <td>{{rsvp.message}}</td>  
-                  <td>{{rsvp.numberOfGuest}}</td>  
-              </tr>  
-          </tbody>  
-      </table>
-
-  </div> -->
   </div>
+
+
+
+
+<!-- Modal -->
+<div class="modal " id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+  
+  <h5 class="modal-title"  id="exampleModalLabel">Update Rsvp</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-rsvp-form [currentRsvp]="currentRsvp" [isEdit]="isEdit" ></app-rsvp-form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 </mat-drawer-container>
 

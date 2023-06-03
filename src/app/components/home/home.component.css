@@ -1,3 +1,6 @@
+.main-container{
+    height: auto;
+}
 .dash{
     padding: 16px;
 }
@@ -18,13 +21,14 @@ h2{
     width: 1120px;
 }
 
-.sidebar{
-    width: 200px;
-    height: 800px;
-    border: 4em;
-    background-color: rgb(73, 73, 245);
-    
-    
+.sidenav{
+    padding: 30px;
+    width: 500px;
+    height: auto; 
+}
+.controller{
+    display: flex;
+    justify-content: space-around;
 }
 .data-table{
     margin-top: 40px;
@@ -32,4 +36,9 @@ h2{
 }
 .col-xs > *{
     padding: 0px !important;
+}
+
+.icons{
+    display: flex;
+    gap: 20px;
 }

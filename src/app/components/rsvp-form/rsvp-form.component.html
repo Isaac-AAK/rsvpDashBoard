@@ -1,0 +1,62 @@
+<div class="card ">
+    <div class="card-header">
+      Sign Up
+    </div>
+    <div class="card-body ">
+          <form #userForm="ngForm" class="d-flex flex-column ">
+            
+              <div class="form-group p-3" > 
+                <input
+                 type="text"
+                 ngModel
+                 [(ngModel)]="currentRsvp.name"
+                 [ngClass]="{'is-invalid':name.errors && name.touched}"
+                 #name="ngModel"
+                  class="form-control"
+                  name="name"
+                  required
+                  minlength="2"
+                  placeholder="Name">
+              </div>
+              <div class="form-group p-3">
+                
+                <input 
+                 type="email"
+                 ngModel
+                 [(ngModel)]="currentRsvp.contact"
+                 #contact="ngModel"
+                  class="form-control"
+                  name="contact"
+                  [required]="true"
+                  placeholder="Email">
+              </div>
+              <div class="form-group p-3">
+                <label >Message</label>
+                <textarea 
+                ngModel
+                [(ngModel)]="currentRsvp.message"
+                type="text" 
+                name="message"
+                #message="ngModel"
+                class="form-control"   
+                maxlength="200"
+                placeholder="Message"> </textarea>
+              </div>
+              <div class="form-group p-3">
+                
+                <input 
+                 type="number"
+                 [(ngModel)]="currentRsvp.numberOfGuest"
+                 ngModel
+                 #numberOfGuest="ngModel"
+                  class="form-control"
+                  name="numberOfGuest"
+                  placeholder="numberOfGuest">
+              </div>
+             <input type="hidden" [(ngModel)]="currentRsvp.id" name="id">
+            <button *ngIf="!isEdit" type="submit" class="btn btn-primary" [disabled]="userForm.invalid" (click)="onSubmit(userForm)">Add Rsvp</button>
+            <button *ngIf="isEdit"  class="btn btn-warning" [disabled]="userForm.invalid" (click)="updateRsvp(userForm)">Update Rsvp</button>
+          </form>
+    </div>
+  </div>
+

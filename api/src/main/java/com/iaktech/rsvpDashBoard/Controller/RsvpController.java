@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.print.attribute.standard.Media;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,9 +46,19 @@ public class RsvpController {
 		return response;
 	}
 	
-	@PostMapping(value = "/rsvps/add")
-	public void addRsvp(Rsvp rsvp) {
+	@PostMapping(value = "/rsvps/add",consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> addRsvp(@RequestBody Rsvp rsvp) {
+		Map<String, String> responseMessage = new HashMap<>();
+		if(rsvp.getName()!= null) {
+		responseMessage.put("response", "Success");
+		log.info("Added {}",rsvp.getName());
 			repo.save(rsvp);
+			return ResponseEntity.ok().body(responseMessage);
+		}
+			
+			responseMessage.put("response", "Error");
+			return ResponseEntity.badRequest().body(responseMessage);
+			
 	}
 	
 	

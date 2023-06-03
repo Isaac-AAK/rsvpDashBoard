@@ -11,7 +11,7 @@ import { Rsvp } from '../model/rsvp';
 export class RsvpServicesService {
   rsvp:Rsvp;
   data:Observable<any>;
- rsvpUrl: string ='http://localhost:8000/api/v1/rsvps';
+ rsvpUrl: string ='http://192.168.1.55:8000/api/v1/rsvps';
 
   constructor(private http: HttpClient) { 
    
@@ -25,28 +25,14 @@ export class RsvpServicesService {
   getPosts():Observable<Rsvp[]>{
     return this.http.get<Rsvp[]>(this.rsvpUrl);
   }
-
-  getData() {
-    this.data = new Observable(observer => {
-      setTimeout(() => {
-        observer.next(1);
-      }, 1000);
-
-      setTimeout(() => {
-        observer.next(2);
-      }, 2000);
-
-      setTimeout(() => {
-        observer.next(3);
-      }, 3000);
-
-      setTimeout(() => {
-        observer.next({name: 'Brad'});
-      }, 4000);
-    });
-    return this.data;
+  delete(id:number):Observable<Rsvp[]>{
+    return this.http.delete<Rsvp[]>(`${this.rsvpUrl}/${id}`);
   }
+  update(rsvp:Rsvp){
+    return this.http.put<Rsvp[]>(`${this.rsvpUrl}/${rsvp.id}`,rsvp)
+  }
+ postRsvp(rsvp:Rsvp){
 
-  
- 
+  return this.http.post<Rsvp[]>(`${this.rsvpUrl}/add`,rsvp);
+ }
 }

@@ -12,16 +12,24 @@ import { RsvpServicesService } from 'src/app/services/rsvp-services.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements AfterViewInit{
  pageTitle = 'RSVP List';
   rsvps: Rsvp[] ;
+  currentRsvp: Rsvp ={
+    id:0,
+    name:'',
+    contact:'',
+    message:'',
+    numberOfGuest:0
+  }
   loadData = false;
   time:any;
   showFiller = true;
-
-  displayedColumns: string[] = ['name', 'contact', 'numberOfGuest'];
+  testShow=true;
+  isEdit:boolean=false;
+  displayedColumns: string[] = ['id','name', 'contact', 'numberOfGuest'];
   dataSource: MatTableDataSource<Rsvp>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -30,7 +38,7 @@ export class HomeComponent implements AfterViewInit{
   constructor(private rsvpService:RsvpServicesService) {
 
   }
-
+  @ViewChild('userForm') form:any;
   ngAfterViewInit() {
     this.rsvpService.getPosts().subscribe(
       data =>{
@@ -42,49 +50,8 @@ export class HomeComponent implements AfterViewInit{
         this.dataSource.sort = this.sort;
       }
     );
-   
-    console.log(this.dataSource.sort)
-
-   
-    
-  //console.log(this.rsvps)
   
   }
-  // callServerEvery2Mins(): Promise<any> {
-   
-  // return new Promise((resolve, reject) => {
-  //   const interval = setInterval(() => {
-  //     // Make server call here
-  //     // ...
-  //     console.log('Server called');
-
-  //     // If server call is successful, resolve Promise
-  //     resolve(  this.rsvpService.getPosts().subscribe(
-  //       data => {
-  //         if(data.length > 0){
-  //           this.rsvps =data;
-  //           console.log(this.rsvps)
-  //           this.loadData=true;
-  //         }
-          
-  //       }));
-    
-
-  //     // If server call fails, reject Promise with an error
-  //     // reject(new Error('Server call failed'));
-
-  //   }, 2000); // 2 minutes in milliseconds
-
-  //   // Stop interval and reject Promise if server call takes too long
-  //   setTimeout(() => {
-  //     clearInterval(interval);
-  //     reject(new Error('Server call timed out'));
-  //   }, 3000); // 1 minute in milliseconds
-  // });
-
-
-  // }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -92,6 +59,25 @@ export class HomeComponent implements AfterViewInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+ 
+
+  deleteRsvp(rsvp:Rsvp){
+    console.log(rsvp.id)
+    this.rsvpService.delete(rsvp.id).subscribe((data)=>{
+
+    })
+    console.log('click')
+  }
+
+  update(rsvp:Rsvp){
+    console.log('click')
+    this.currentRsvp=rsvp;
+    this.rsvpService.update(this.currentRsvp).subscribe((data)=>{
+      console.log(data)
+      this.isEdit=true;
+    })
   }
 }
 
